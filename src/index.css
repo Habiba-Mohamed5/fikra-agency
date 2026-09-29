@@ -1,0 +1,34 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-deep-dark text-white font-sans;
+    direction: rtl;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .glass-card {
+    @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-6 transition-all duration-300;
+  }
+  .glass-card:hover {
+    @apply border-neon-cyan/30 shadow-[0_0_20px_rgba(6,182,212,0.15)];
+  }
+  
+  .glass-nav {
+    @apply bg-deep-dark/80 backdrop-blur-lg border-b border-white/10;
+  }
+
+  .btn-primary {
+    @apply bg-gradient-to-r from-neon-cyan to-neon-purple text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)];
+  }
+
+  .btn-secondary {
+    @apply bg-white/10 border border-white/20 text-white font-bold py-3 px-8 rounded-full transition-all duration-300 hover:bg-white/20 hover:border-white/40;
+  }
+}
