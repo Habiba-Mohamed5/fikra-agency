@@ -180,14 +180,12 @@ function Hero({ t }: any) {
   const fl = (d: number, y: number): any => (reduce ? {} : { animate: { y: [0, -y, 0] }, transition: { duration: 5 + d, repeat: Infinity, ease: "easeInOut", delay: d } });
   return (
     <section id="hero" className="relative min-h-screen flex items-center pt-28 pb-16 px-5 overflow-hidden">
-      <div className="absolute -top-20 -end-20 w-96 h-96 rounded-full blur-[120px] opacity-30" style={{ background: CYAN }} />
-      <div className="absolute bottom-0 -start-20 w-96 h-96 rounded-full blur-[120px] opacity-30" style={{ background: PURPLE }} />
+      {/* Crisp geometric circles instead of blurred blobs */}
+      <div className="absolute -top-64 -start-64 w-[800px] h-[800px] rounded-full opacity-[0.07] pointer-events-none" style={{ background: CYAN }} />
+      <div className="absolute -bottom-80 -end-20 w-[900px] h-[900px] rounded-full opacity-[0.1] pointer-events-none" style={{ background: PURPLE }} />
+      
       <div className="relative max-w-6xl mx-auto grid lg:grid-cols-2 gap-14 items-center w-full">
         <div>
-          <motion.span initial={reduce ? false : { opacity: 0 }} animate={{ opacity: 1 }}
-            className={`${glass} inline-flex items-center gap-2 text-sm px-4 py-2 mb-6 text-cyan-300`}>
-            <CheckCircle2 size={15} />{t.badge}
-          </motion.span>
           <motion.h1 initial={reduce ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}
             className="text-5xl md:text-6xl font-black leading-[1.35] mb-6">
             {t.h1a}<span className={gradText}>{t.h1b}</span>
