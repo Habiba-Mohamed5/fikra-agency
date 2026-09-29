@@ -291,7 +291,16 @@ function Services({ t }: any) {
 /* ---------- Case studies ---------- */
 function Portfolio({ t, dir }: any) {
   const [i, setI] = useState(0);
-  const c = t.cases[i], color = i === 1 ? PURPLE : CYAN, icons = [[Eye, MessageCircle], [MessageCircle, MessageCircle, MessageCircle], [Eye, Users]][i];
+  const c = t.cases[i], color = i % 2 !== 0 ? PURPLE : CYAN;
+  const ICONS_MAP = [
+    [Eye, MessageCircle], 
+    [MessageCircle, MessageCircle, MessageCircle], 
+    [Eye, Users],
+    [Target, TrendingUp],
+    [TrendingUp, Zap],
+    [Zap, Target]
+  ];
+  const icons = ICONS_MAP[i] || [TrendingUp, TrendingUp, TrendingUp];
   const n = t.cases.length, next = () => setI((i + 1) % n), prev = () => setI((i - 1 + n) % n);
   const [Prev, Next] = dir === "rtl" ? [ChevronRight, ChevronLeft] : [ChevronLeft, ChevronRight];
   return (
@@ -314,7 +323,7 @@ function Portfolio({ t, dir }: any) {
               <h3 className="text-2xl font-extrabold mb-3 leading-snug">{c.title}</h3>
               <p className="text-slate-400 leading-loose mb-6">{c.desc}</p>
               <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-                {c.stats.map(([v, l]: any, k: number) => { const Icon = icons[k]; return (
+                {c.stats.map(([v, l]: any, k: number) => { const Icon = icons[k] || TrendingUp; return (
                   <div key={k} className="rounded-xl bg-white/5 border border-white/10 p-3">
                     <Icon size={16} color={color} className="mb-1" /><div className="text-xl font-black" dir="ltr">{v}</div><div className="text-xs text-slate-400">{l}</div>
                   </div>); })}
